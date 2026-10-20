@@ -1,0 +1,53 @@
+:root {
+  --bg: #0b1620;
+  --panel: #102230;
+  --line: #1d3547;
+  --text: #e6eef4;
+  --muted: #7f98aa;
+  --accent: #35c2c1;
+  --warn: #f2a541;
+  --bad: #e5604d;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+
+.wrap { display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+.side { border-right: 1px solid var(--line); padding: 20px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px; }
+.map { position: relative; }
+.map > div { height: 100%; width: 100%; }
+
+h1 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; margin: 0;
+  color: var(--muted); font-weight: 600; }
+
+.status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--bad); }
+.dot.ok { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.dot.stale { background: var(--warn); }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.tile.wide { grid-column: span 2; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.value { font-family: var(--mono); font-size: 26px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.value.small { font-size: 16px; line-height: 1.5; }
+.unit { font-size: 13px; color: var(--muted); margin-left: 4px; }
+
+.raw { background: #08111a; border: 1px solid var(--line); border-radius: 8px; padding: 10px;
+  font-family: var(--mono); font-size: 11px; color: var(--muted); max-height: 220px; overflow-y: auto;
+  white-space: pre; }
+
+.btn { background: transparent; border: 1px solid var(--line); color: var(--text); border-radius: 6px;
+  padding: 6px 10px; font-size: 12px; cursor: pointer; }
+.btn.on { border-color: var(--accent); color: var(--accent); }
+
+.vessel { color: var(--accent); }
+
+@media (max-width: 800px) {
+  .wrap { grid-template-columns: 1fr; grid-template-rows: 55vh auto; height: auto; }
+  .map { order: -1; height: 55vh; }
+  .side { border-right: none; }
+}
